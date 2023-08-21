@@ -1,0 +1,55 @@
+{
+  "name": "express-ts-template",
+  "version": "0.0.0",
+  "description": "Express typescript template",
+  "main": "build/src/main.js",
+  "types": "build/src/main.map.js",
+  "engines": {
+    "node": ">= 16"
+  },
+  "devDependencies": {
+    "@types/config": "^3.3.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jest": "~29.5",
+    "@types/node": "^16.18.41",
+    "@typescript-eslint/eslint-plugin": "~5.59",
+    "@typescript-eslint/parser": "~5.59",
+    "eslint": "~8.38",
+    "eslint-config-prettier": "~8.8",
+    "eslint-plugin-jest": "~27.2",
+    "jest": "~29.5",
+    "prettier": "~2.8",
+    "rimraf": "~5.0",
+    "ts-api-utils": "~0.0.44",
+    "ts-jest": "~29.1",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.0"
+  },
+  "scripts": {
+    "start": "node build/src/main.js",
+    "clean": "rimraf coverage build tmp",
+    "prebuild": "npm run lint",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts --ext .mts",
+    "lint-fix": "eslint --fix . --ext .ts --ext .mts",
+    "test": "jest --coverage --passWithNoTests",
+    "prettier": "prettier --config .prettierrc --write .",
+    "test:watch": "jest --watch"
+  },
+  "author": "NguyenNguyen",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "lodash.map": "^4.6.0",
+    "tslib": "~2.5",
+    "winston": "^3.3.3"
+  }
+}

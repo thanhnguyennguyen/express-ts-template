@@ -1,0 +1,9 @@
+{
+  "entryFile": "src/main.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "outputDirectory": "swagger",
+    "specVersion": 3
+  },
+  "ignore": ["**/node_modules/**"]
+}

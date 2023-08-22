@@ -5,7 +5,9 @@ const app: Express = express()
 import config from 'config'
 import http from 'http'
 import errorHandler from './middlewares/error'
-import router from './apis/index'
+import router from './routes'
+import swaggerUi from 'swagger-ui-express'
+import swaggerFile from '../swagger/swagger.json'
 
 // cors
 app.use(cors())
@@ -18,6 +20,21 @@ app.set('trust proxy', 1)
 const server = new http.Server(app)
 
 app.use(router)
+
+if (process.env.NODE_ENV != 'production') {
+  app.use(
+    '/docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerFile, {
+      customSiteTitle: 'API Docs',
+      customCss: ` .topbar {display: none;}
+      .title {
+        display: flex;
+        align-items: center
+      }`,
+    }),
+  )
+}
 
 // error handler
 app.use(errorHandler)

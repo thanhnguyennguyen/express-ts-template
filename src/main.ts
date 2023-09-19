@@ -2,6 +2,8 @@ import express, { Express } from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 const app: Express = express()
+import { stream } from './helpers/logger'
+import morgan from 'morgan'
 import config from 'config'
 import http from 'http'
 import errorHandler from './middlewares/error'
@@ -20,6 +22,7 @@ app.set('trust proxy', 1)
 const server = new http.Server(app)
 
 app.use(router)
+app.use(morgan('short', { stream }))
 
 if (process.env.NODE_ENV != 'production') {
   app.use(

@@ -3,7 +3,7 @@ const { combine, printf } = format
 import config from 'config'
 
 const lFormat = printf((info) => {
-  return `${info.level.toUpperCase()}: ${info.message}`
+  return `[TomoScan-Statistics] ${info.level.toUpperCase()}: ${info.message}`
 })
 
 const logger = createLogger({
@@ -16,12 +16,18 @@ const logger = createLogger({
 // If we're not in production then log to the `console` with the format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(
-    new transports.Console({
-      format: format.simple(),
-    }),
-  )
+// if (process.env.NODE_ENV !== 'production') {
+//   logger.add(
+//     new transports.Console({
+//       format: format.simple(),
+//     }),
+//   )
+// }
+
+export const stream = {
+  write: (message: string): void => {
+    logger.info(message)
+  },
 }
 
 export default logger
